@@ -49,7 +49,9 @@ fn main() {
     let result = result.to_string(scope2).unwrap();
     println!("result: {:?}", result.to_rust_string_lossy(scope2));
 
-    // return foo.foo
+    // how can we prevent global.bar from being set here?
+    // where global.foo remains set, and shared (will be immutable later)
+    // cannot create a new scope using the same global scope, by reference
     let code = v8::String::new(scope2, "bar").unwrap();
     println!("javascript code: {}", code.to_rust_string_lossy(scope2));
 
